@@ -272,8 +272,8 @@ page = st.sidebar.radio("Navigate", ["Industry Dashboard", "Recommendation Engin
 # ------------------------------
 # 1. Industry Dashboard
 # ------------------------------
-if page == "Industry Dashboard":
-    st.header("Industry Impact Dashboard")
+if page == "📊 Industry Dashboard":
+    st.header("📊 Industry Impact Dashboard")
     st.markdown("*Ranking industries by AI impact potential based on discussion volume and technology adoption patterns*")
     
     # Industry selection
@@ -364,15 +364,15 @@ if page == "Industry Dashboard":
 # ------------------------------
 # 2. Recommendation Engine
 # ------------------------------
-elif page == "Recommendation Engine":
-    st.header("Actionable AI Adoption Recommendations")
+elif page == "🎯 Recommendation Engine":
+    st.header("🎯 Actionable AI Adoption Recommendations")
     st.markdown("*Strategic guidance for successful AI implementation based on industry impact analysis*")
     
     selected_industry = st.selectbox("Select Industry for Recommendations", list(industry_data.keys()), key="rec")
     data = industry_data[selected_industry]
     
     # High-impact recommendations based on analysis
-    st.subheader("Priority Automation Opportunities")
+    st.subheader("🚀 Priority Automation Opportunities")
     
     if selected_industry == 'Tech':
         st.markdown("""
@@ -531,8 +531,8 @@ elif page == "Recommendation Engine":
 # ------------------------------
 # 3. Rollout Simulator
 # ------------------------------
-elif page == "Rollout Simulator":
-    st.header("AI Rollout Risk Simulator")
+elif page == "🔄 Rollout Simulator":
+    st.header("🔄 AI Rollout Risk Simulator")
     st.markdown("*Simulate different rollout approaches and predict success likelihood*")
     
     # User inputs
@@ -612,7 +612,7 @@ elif page == "Rollout Simulator":
     success_prob = calculate_success_probability(sim_industry, rollout_speed, staff_percentage, ai_approach, change_management)
     
     # Display results
-    st.subheader("Rollout Success Prediction")
+    st.subheader("📊 Rollout Success Prediction")
     
     # Create gauge chart
     fig = go.Figure(go.Indicator(
@@ -643,9 +643,9 @@ elif page == "Rollout Simulator":
         st.success(f"**HIGH SUCCESS PROBABILITY ({success_prob}%)**")
         st.markdown("""
         **Your rollout plan shows strong success indicators:**
-        - Well-balanced approach to AI implementation  
-       - Appropriate timeline for organizational change  
-       - Good change management planning  
+        ✅ Well-balanced approach to AI implementation  
+        ✅ Appropriate timeline for organizational change  
+        ✅ Good change management planning  
         
         **Recommendations to maintain success:**
         • Continue with current plan
@@ -668,9 +668,9 @@ elif page == "Rollout Simulator":
         st.error(f"**LOW SUCCESS PROBABILITY ({success_prob}%)**")
         st.markdown("""
         **Your rollout plan has significant risk factors:**
-        - High risk of employee resistance or project failure  
-        - Timeline or scope may be too aggressive  
-        - Insufficient change management planning  
+        ❌ High risk of employee resistance or project failure  
+        ❌ Timeline or scope may be too aggressive  
+        ❌ Insufficient change management planning  
         
         **Critical recommendations:**
         • Extend rollout timeline significantly
@@ -723,13 +723,13 @@ elif page == "📈 Technology Trends":
                 if len(tech_data['mentions']) >= 6:
                     recent_avg = np.mean(tech_data['mentions'][-3:])
                     previous_avg = np.mean(tech_data['mentions'][-6:-3])
-                    trend = "Rising" if recent_avg > previous_avg else "📉 Declining"
+                    trend = "📈 Rising" if recent_avg > previous_avg else "📉 Declining"
                 else:
-                    trend = "Stable"
+                    trend = "📊 Stable"
                 st.metric("Recent Trend", trend)
                 
             # Show data insights
-            st.subheader("Key Insights")
+            st.subheader("📊 Key Insights")
             total_mentions = sum(tech_data['mentions'])
             date_range = f"{tech_data['dates'][0].strftime('%Y')} - {tech_data['dates'][-1].strftime('%Y')}"
             
