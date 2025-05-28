@@ -1,10 +1,6 @@
 import streamlit as st
 import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
 import numpy as np
-from io import BytesIO
-import base64
 from datetime import datetime, timedelta
 import plotly.express as px
 import plotly.graph_objects as go
