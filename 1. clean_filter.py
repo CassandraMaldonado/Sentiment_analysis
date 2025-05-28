@@ -183,5 +183,5 @@ save_to_cache(df_relevant, "cleaned_data_for_lda.pkl")
 df_minimal = df_relevant[['cleaned_text', 'date', 'year', 'month', 'yearmonth']].copy()
 save_to_cache(df_minimal, "cleaned_data_minimal.pkl")
 
-print("Data preprocessing complete")
+print("Data preprocessing done.")
 print(f"Processed {len(df)} articles, with {len(df_relevant)} relevant articles saved to cache")
