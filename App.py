@@ -1,5 +1,4 @@
 import streamlit as st
-import pandas as pd
 import numpy as np
 from datetime import datetime, timedelta
 
@@ -211,8 +210,9 @@ def load_real_time_series_data():
             if isinstance(date_period_tuple, tuple):
                 date_str = date_period_tuple[0]  # Extract the date string like '2023-01'
                 try:
-                    # Convert to pandas datetime
-                    date = pd.to_datetime(date_str + '-01')  # Add day to make it a valid date
+                    # Convert to datetime using native Python
+                    year, month = date_str.split('-')
+                    date = datetime(int(year), int(month), 1)
                     date_dict[date] = count
                 except:
                     continue  # Skip invalid dates
@@ -230,6 +230,173 @@ def load_real_time_series_data():
     
     return clean_data
 
+def load_detailed_recommendations():
+    """Load detailed industry recommendations from analysis"""
+    return {
+        'Tech': {
+            'automation_opportunities': [
+                'Code generation, bug fixes, test case generation',
+                'Log analysis, anomaly detection for cloud environments', 
+                'Cybersecurity threat detection and incident response'
+            ],
+            'productivity_enhancements': [
+                'Copilots for real-time coding and documentation',
+                'Automated ticket triaging and backlog summarization',
+                'AI agents for devops and deployment optimization'
+            ],
+            'adoption_recommendations': [
+                'Create dedicated "AI enablement" teams',
+                'Promote open-source AI fine-tuning internally',
+                'Adopt secure, containerized model deployment pipelines'
+            ],
+            'description': 'The technology sector is not only the birthplace of most AI tools but also one of the first to adopt and benefit from them. AI has become integral to software development lifecycles, infrastructure management, and customer operations.'
+        },
+        'Healthcare': {
+            'automation_opportunities': [
+                'EHR transcription and coding',
+                'Insurance claims routing and risk prediction',
+                'Medical image classification and anomaly detection'
+            ],
+            'productivity_enhancements': [
+                'AI scribes for clinical documentation',
+                'Assistive diagnostics tools for physicians',
+                'NLP for reviewing medical literature and trial results'
+            ],
+            'adoption_recommendations': [
+                'Start in non-clinical workflows for quicker wins',
+                'Use federated learning for privacy-preserving model training',
+                'Partner with AI firms focused on FDA-approved solutions'
+            ],
+            'description': 'Healthcare is a high-stakes, high-regulation environment where AI must prove both utility and safety. AI is uniquely positioned to assist with diagnosis, administration, and personalized care.'
+        },
+        'Finance': {
+            'automation_opportunities': [
+                'Fraud pattern detection',
+                'Risk model simulation and backtesting',
+                'Contract review and regulatory compliance audits'
+            ],
+            'productivity_enhancements': [
+                'Natural language querying of financial databases',
+                'Client communication assistants (chatbots, summarizers)',
+                'Portfolio and market insights generation'
+            ],
+            'adoption_recommendations': [
+                'Focus first on back-office automation (KYC, audit, reporting)',
+                'Use hybrid human-AI workflows for customer-facing tools',
+                'Build XAI tools to support auditing, documentation, and governance'
+            ],
+            'description': 'Finance is data-rich, rules-based, and deeply analytical—making it fertile ground for AI applications. Financial services face strict regulation and require high transparency.'
+        },
+        'Education': {
+            'automation_opportunities': [
+                'Auto-grading and feedback generation',
+                'AI-generated practice materials and quizzes',
+                'Curriculum adaptation for diverse learner needs'
+            ],
+            'productivity_enhancements': [
+                'Generative planning for lesson material',
+                'AI tutors to provide 24/7 academic support',
+                'NLP tools for analyzing student performance trends'
+            ],
+            'adoption_recommendations': [
+                'Start with AI for administrative and content planning tasks',
+                'Ensure inclusive access for students with disabilities',
+                'Train educators on using AI without compromising academic integrity'
+            ],
+            'description': 'Education is undergoing rapid digitization, and AI can help tackle issues like resource constraints, personalization gaps, and administrative inefficiencies.'
+        },
+        'Media': {
+            'automation_opportunities': [
+                'Image and video generation (e.g., Midjourney, Sora)',
+                'Speech-to-text for subtitling, podcast production',
+                'Generative copywriting for ads, headlines, and descriptions'
+            ],
+            'productivity_enhancements': [
+                'AI assistants for scriptwriting and idea generation',
+                'Trend analysis tools based on social/news data',
+                'Auto-tagging and metadata generation'
+            ],
+            'adoption_recommendations': [
+                'Use human-in-the-loop pipelines to review AI content',
+                'Set clear internal guidelines on synthetic content',
+                'Experiment with multi-modal storytelling using GenAI'
+            ],
+            'description': 'AI is radically transforming content creation—compressing what used to take days into seconds. The best outcomes arise when humans guide the creative direction and AI provides acceleration.'
+        },
+        'Government': {
+            'automation_opportunities': [
+                'Chatbots for public Q&A and service access',
+                'Translation and summarization of legal/policy documents',
+                'Analysis of public sentiment and consultations'
+            ],
+            'productivity_enhancements': [
+                'AI co-pilots for drafting reports and responses',
+                'Real-time summarization of meetings and case files',
+                'AI-driven trend detection from news and media'
+            ],
+            'adoption_recommendations': [
+                'Begin with internal-use pilots to gain traction',
+                'Open-source tooling helps maintain transparency',
+                'Establish public advisory councils for AI ethics'
+            ],
+            'description': 'AI can help governments increase access to services, streamline internal processes, and make sense of vast amounts of public data. Adoption must be slow, thoughtful, and built on trust.'
+        },
+        'Energy': {
+            'automation_opportunities': [
+                'Predictive maintenance for grid infrastructure',
+                'Energy demand forecasting and optimization',
+                'Automated inspection of power lines and facilities'
+            ],
+            'productivity_enhancements': [
+                'Smart grid optimization algorithms',
+                'AI-powered energy trading systems',
+                'Environmental impact monitoring and reporting'
+            ],
+            'adoption_recommendations': [
+                'Start with predictive maintenance to reduce downtime',
+                'Integrate AI with existing SCADA systems',
+                'Focus on safety-critical applications with human oversight'
+            ],
+            'description': 'Energy sector can leverage AI for grid optimization, predictive maintenance, and environmental monitoring while maintaining safety and reliability standards.'
+        },
+        'Retail': {
+            'automation_opportunities': [
+                'Inventory management and demand forecasting',
+                'Personalized recommendation systems',
+                'Dynamic pricing optimization'
+            ],
+            'productivity_enhancements': [
+                'Customer service chatbots and virtual assistants',
+                'Supply chain optimization and logistics',
+                'Visual search and product discovery'
+            ],
+            'adoption_recommendations': [
+                'Begin with recommendation engines for immediate ROI',
+                'Implement gradual personalization to build customer trust',
+                'Use A/B testing to validate AI-driven decisions'
+            ],
+            'description': 'Retail can benefit from AI through personalized customer experiences, optimized operations, and data-driven decision making across the entire value chain.'
+        },
+        'Transport': {
+            'automation_opportunities': [
+                'Route optimization and traffic management',
+                'Predictive maintenance for vehicles and infrastructure',
+                'Automated logistics and warehouse operations'
+            ],
+            'productivity_enhancements': [
+                'Fleet management and fuel optimization',
+                'Real-time passenger information systems',
+                'Demand forecasting for capacity planning'
+            ],
+            'adoption_recommendations': [
+                'Prioritize safety applications with extensive testing',
+                'Start with back-office optimization before customer-facing AI',
+                'Collaborate with regulators on autonomous system standards'
+            ],
+            'description': 'Transportation industry can leverage AI for safety improvements, operational efficiency, and enhanced passenger experiences while navigating complex regulatory requirements.'
+        }
+    }
+
 # Load all data
 industry_data = load_industry_data()
 tech_mentions = load_technology_data()
@@ -238,17 +405,17 @@ job_impact = load_job_impact_data()
 time_series_data = load_real_time_series_data()
 detailed_recommendations = load_detailed_recommendations()
 
-# Convert industry data to DataFrame for easier handling
-industry_df = pd.DataFrame([
-    {
+# Convert industry data to list of dictionaries for easier handling
+industry_list = []
+for industry, data in industry_data.items():
+    industry_record = {
         'industry': industry,
         'ai_mentions': data['mentions'],
         'impact_level': data['impact_level'],
-        'rank': data['rank'],
-        **data  # Include all other data
+        'rank': data['rank']
     }
-    for industry, data in industry_data.items()
-])
+    industry_record.update(data)  # Include all other data
+    industry_list.append(industry_record)
 
 # ------------------------------
 # Main App
@@ -557,10 +724,10 @@ elif page == "🔄 Rollout Simulator":
         base_score = 70  # Start with 70% base success rate
         
         # Industry factor (based on AI readiness from mentions)
-        industry_row = industry_df[industry_df['industry'] == industry]
-        if not industry_row.empty:
-            industry_mentions = industry_row.iloc[0]['ai_mentions']
-            max_mentions = industry_df['ai_mentions'].max()
+        industry_item = next((item for item in industry_list if item['industry'] == industry), None)
+        if industry_item:
+            industry_mentions = industry_item['ai_mentions']
+            max_mentions = max(item['ai_mentions'] for item in industry_list)
             if industry_mentions > 500000:
                 base_score += 15  # High AI readiness
             elif industry_mentions > 200000:
@@ -699,13 +866,12 @@ elif page == "📈 Technology Trends":
         if selected_tech in time_series_data:
             tech_data = time_series_data[selected_tech]
             
-            # Create dataframe for streamlit chart
-            chart_df = pd.DataFrame({
-                'Date': tech_data['dates'],
-                'Mentions': tech_data['mentions']
-            }).set_index('Date')
+            # Create chart data dictionary for streamlit chart
+            chart_data = {}
+            for date, mentions in zip(tech_data['dates'], tech_data['mentions']):
+                chart_data[date.strftime('%Y-%m')] = mentions
             
-            st.line_chart(chart_df, height=400)
+            st.line_chart(chart_data, height=400)
             
             # Key insights from real data
             peak_idx = np.argmax(tech_data['mentions'])
@@ -769,13 +935,16 @@ elif page == "📈 Technology Trends":
                         break
         
         if related_industries:
-            related_df = pd.DataFrame(related_industries)
+            # Sort industries by AI mentions
+            related_industries = sorted(related_industries, key=lambda x: x['AI Mentions'], reverse=True)
             
             # Display table
-            st.dataframe(related_df.sort_values('AI Mentions', ascending=False), use_container_width=True)
+            st.subheader("Industries Using This Technology")
+            for industry in related_industries:
+                st.write(f"**{industry['Industry']}**: {industry['AI Mentions']:,} mentions (Impact: {industry['Impact Level']})")
             
             # Simple bar chart visualization
-            chart_data = related_df.set_index('Industry')['AI Mentions']
+            chart_data = {industry['Industry']: industry['AI Mentions'] for industry in related_industries}
             st.bar_chart(chart_data)
         else:
             st.info(f"No specific industry adoption patterns found for {selected_tech} in the paradigm technologies mapping")
