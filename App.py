@@ -2,8 +2,6 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 from datetime import datetime, timedelta
-import plotly.express as px
-import plotly.graph_objects as go
 
 # Set page config
 st.set_page_config(page_title="AI Readiness Navigator", layout="wide", page_icon="🧠")
@@ -323,26 +321,9 @@ if page == "📊 Industry Dashboard":
     
     comp_df = pd.DataFrame(comparison_data).sort_values('AI Mentions', ascending=True)
     
-    # Color map for impact levels
-    impact_colors = {
-        'Transformational': '#8B0000',
-        'High': '#FF4500', 
-        'Medium-High': '#FFA500',
-        'Medium': '#FFD700',
-        'Emerging': '#90EE90'
-    }
-    
-    fig = px.bar(
-        comp_df,
-        x='AI Mentions',
-        y='Industry',
-        color='Impact Level',
-        color_discrete_map=impact_colors,
-        title="AI Discussion Volume by Industry (Indicator of Future Impact)",
-        labels={'AI Mentions': 'AI Mentions in News Coverage'}
-    )
-    fig.update_layout(height=500)
-    st.plotly_chart(fig, use_container_width=True)
+    # Use streamlit's built-in bar chart
+    chart_data = comp_df.set_index('Industry')['AI Mentions']
+    st.bar_chart(chart_data, height=500)
     
     # Analysis insights
     st.subheader("🔍 Impact Analysis")
@@ -705,25 +686,16 @@ elif page == "📈 Technology Trends":
     with tab1:
         st.subheader(f"Mentions Over Time: {selected_tech}")
         
-        # Create time series chart
+        # Create time series chart using streamlit
         tech_data = time_series_data[selected_tech]
         
-        fig = go.Figure()
-        fig.add_trace(go.Scatter(
-            x=time_series_dates,
-            y=tech_data['data'],
-            mode='lines+markers',
-            name='Mentions',
-            line=dict(color='blue', width=3)
-        ))
+        # Create dataframe for streamlit chart
+        chart_df = pd.DataFrame({
+            'Date': time_series_dates,
+            'Mentions': tech_data['data']
+        }).set_index('Date')
         
-        fig.update_layout(
-            title=f"{selected_tech} Discussion Volume Over Time",
-            xaxis_title="Date",
-            yaxis_title="Monthly Mentions",
-            height=400
-        )
-        st.plotly_chart(fig, use_container_width=True)
+        st.line_chart(chart_df, height=400)
         
         # Key insights
         peak_idx = np.argmax(tech_data['data'])
@@ -743,29 +715,17 @@ elif page == "📈 Technology Trends":
     with tab2:
         st.subheader(f"Sentiment Analysis: {selected_tech}")
         
-        # Sentiment over time
+        # Sentiment over time using streamlit
         sentiment_data = tech_data['sentiment']
         
-        fig = go.Figure()
-        fig.add_trace(go.Scatter(
-            x=time_series_dates,
-            y=sentiment_data,
-            mode='lines+markers',
-            name='Sentiment Score',
-            line=dict(color='green', width=3),
-            fill='tonexty'
-        ))
+        # Create dataframe for sentiment chart
+        sentiment_df = pd.DataFrame({
+            'Date': time_series_dates,
+            'Sentiment': sentiment_data
+        }).set_index('Date')
         
-        fig.add_hline(y=0.5, line_dash="dash", line_color="gray", annotation_text="Neutral Sentiment")
-        
-        fig.update_layout(
-            title=f"{selected_tech} Sentiment Over Time",
-            xaxis_title="Date", 
-            yaxis_title="Sentiment Score (0-1)",
-            yaxis=dict(range=[0, 1]),
-            height=400
-        )
-        st.plotly_chart(fig, use_container_width=True)
+        st.line_chart(sentiment_df, height=400)
+        st.write("Note: Sentiment scale 0-1, where 0.5 = Neutral")
         
         # Sentiment insights
         avg_sentiment = np.mean(sentiment_data)
@@ -804,23 +764,9 @@ elif page == "📈 Technology Trends":
             # Display table
             st.dataframe(related_df.sort_values('AI Mentions', ascending=False), use_container_width=True)
             
-            # Visualization
-            fig = px.scatter(
-                related_df,
-                x='AI Mentions',
-                y='Industry', 
-                size='AI Mentions',
-                color='Impact Level',
-                title=f"Industries Adopting {selected_tech}",
-                color_discrete_map={
-                    'Transformational': '#8B0000',
-                    'High': '#FF4500',
-                    'Medium-High': '#FFA500', 
-                    'Medium': '#FFD700',
-                    'Emerging': '#90EE90'
-                }
-            )
-            st.plotly_chart(fig, use_container_width=True)
+            # Simple bar chart visualization
+            chart_data = related_df.set_index('Industry')['AI Mentions']
+            st.bar_chart(chart_data)
         else:
             st.info(f"No specific industry adoption patterns found for {selected_tech} in the current dataset")
             
