@@ -9,3 +9,14 @@ With increasing concern over AI’s impact on the workforce, this project aims t
 - Identify which industries and roles are most vulnerable to automation or augmentation.
 - Track how sentiment toward AI shifts over time and by sector.
 - Detect key technologies, entities, and narratives influencing public perception.
+
+
+## Methodology
+
+- **Data**: 180K AI-related news articles (2022–2025), filtered for labor relevance.
+- **Cleaning**: Regex-based filtering removed around 20K off-topic or noisy entries.
+- **Topic Modeling**: Used LDA to extract latent themes and map them to industries.
+- **NER**: Named entity recognition for people, organizations and places.
+- **Sentiment Analysis**: Custom scoring pipeline focused on labor and industry tone.
+- **Temporal Analysis**: Visualized sentiment shifts following major events like GPT-4 and AI Act.
+- **Tools Used**: `spaCy`, `TextBlob`, `Gensim`, `Pandas`, `Matplotlib`, `Seaborn`, `Streamlit`.
