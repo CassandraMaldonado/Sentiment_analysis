@@ -513,7 +513,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Navigation
-page = st.sidebar.radio("Navigate", ["Industry Dashboard", "Recommendation Engine", "Rollout Simulator", "Technology Trends", "AI Players & Organizations"])
+page = st.sidebar.radio("Navigate", ["Industry Dashboard", "Recommendation Engine", "Rollout Simulator", "AI Players & Organizations"])
 
 # ------------------------------
 # 1. Industry Dashboard
@@ -601,7 +601,6 @@ if page == "Industry Dashboard":
         st.markdown(f"""
         <div class="metric-card">
         <strong>{selected_industry}</strong> shows <strong>{data['impact_level'].lower()} AI impact</strong>:
-        <br>• Discussion volume: {data['mentions']:,} mentions.
         <br>• Gradual adoption expected over 3-5 years.
         <br>• Focus on specific use cases rather than broad transformation.
         </div>
