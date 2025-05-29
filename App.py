@@ -1,6 +1,8 @@
 import streamlit as st
 import numpy as np
+import pandas as pd
 from datetime import datetime, timedelta
+import plotly.graph_objects as go
 
 # Set page config
 st.set_page_config(page_title="AI Readiness Navigator", layout="wide")
@@ -397,6 +399,60 @@ def load_detailed_recommendations():
         }
     }
 
+def load_sentiment_data():
+    """Load AI sentiment analysis data from the JSON file"""
+    return {
+        "overall_stats": {
+            "total_rows": 1186,
+            "overall_sentiment_distribution": {
+                "Positive": 749,
+                "Neutral": 429,
+                "Negative": 7
+            },
+            "workplace_sentiment_distribution": {
+                "Neutral": 995,
+                "Positive": 147,
+                "Negative": 43
+            },
+            "average_entities_per_row": 120.97,
+            "total_unique_organizations": 21430,
+            "total_unique_persons": 12448,
+            "total_unique_locations": 3256
+        },
+        "ai_technologies": [
+            {"entity": "AI", "total_mentions": 1177, "positive_pct": 63.04, "neutral_pct": 36.36, "negative_pct": 0.51, "avg_sentiment": 0.626, "workplace_sentiment": 0.087},
+            {"entity": "Artificial Intelligence", "total_mentions": 806, "positive_pct": 58.44, "neutral_pct": 40.82, "negative_pct": 0.74, "avg_sentiment": 0.577, "workplace_sentiment": 0.097},
+            {"entity": "ChatGPT", "total_mentions": 352, "positive_pct": 65.91, "neutral_pct": 34.09, "negative_pct": 0.0, "avg_sentiment": 0.659, "workplace_sentiment": 0.054},
+            {"entity": "OpenAI", "total_mentions": 305, "positive_pct": 62.30, "neutral_pct": 37.70, "negative_pct": 0.0, "avg_sentiment": 0.623, "workplace_sentiment": 0.039},
+            {"entity": "Machine Learning", "total_mentions": 199, "positive_pct": 70.85, "neutral_pct": 28.64, "negative_pct": 0.50, "avg_sentiment": 0.704, "workplace_sentiment": 0.141},
+            {"entity": "Bard", "total_mentions": 82, "positive_pct": 74.39, "neutral_pct": 25.61, "negative_pct": 0.0, "avg_sentiment": 0.744, "workplace_sentiment": -0.012},
+            {"entity": "GPT-4", "total_mentions": 65, "positive_pct": 70.77, "neutral_pct": 29.23, "negative_pct": 0.0, "avg_sentiment": 0.708, "workplace_sentiment": 0.062},
+            {"entity": "Gemini", "total_mentions": 63, "positive_pct": 76.19, "neutral_pct": 23.81, "negative_pct": 0.0, "avg_sentiment": 0.762, "workplace_sentiment": 0.190},
+            {"entity": "Copilot", "total_mentions": 38, "positive_pct": 78.95, "neutral_pct": 21.05, "negative_pct": 0.0, "avg_sentiment": 0.789, "workplace_sentiment": 0.105},
+            {"entity": "Claude", "total_mentions": 19, "positive_pct": 84.21, "neutral_pct": 15.79, "negative_pct": 0.0, "avg_sentiment": 0.842, "workplace_sentiment": 0.211}
+        ],
+        "ai_leaders": [
+            {"entity": "Sam Altman", "total_mentions": 71, "positive_pct": 57.75, "neutral_pct": 42.25, "negative_pct": 0.0, "avg_sentiment": 0.577, "workplace_sentiment": 0.014},
+            {"entity": "Elon Musk", "total_mentions": 60, "positive_pct": 45.0, "neutral_pct": 55.0, "negative_pct": 0.0, "avg_sentiment": 0.450, "workplace_sentiment": 0.0},
+            {"entity": "Sundar Pichai", "total_mentions": 31, "positive_pct": 67.74, "neutral_pct": 32.26, "negative_pct": 0.0, "avg_sentiment": 0.677, "workplace_sentiment": -0.065},
+            {"entity": "Satya Nadella", "total_mentions": 23, "positive_pct": 65.22, "neutral_pct": 34.78, "negative_pct": 0.0, "avg_sentiment": 0.652, "workplace_sentiment": 0.0},
+            {"entity": "Geoffrey Hinton", "total_mentions": 7, "positive_pct": 57.14, "neutral_pct": 42.86, "negative_pct": 0.0, "avg_sentiment": 0.571, "workplace_sentiment": 0.0},
+            {"entity": "Ilya Sutskever", "total_mentions": 6, "positive_pct": 66.67, "neutral_pct": 33.33, "negative_pct": 0.0, "avg_sentiment": 0.667, "workplace_sentiment": 0.167},
+            {"entity": "Andrew Ng", "total_mentions": 5, "positive_pct": 60.0, "neutral_pct": 40.0, "negative_pct": 0.0, "avg_sentiment": 0.600, "workplace_sentiment": 0.0},
+            {"entity": "Dario Amodei", "total_mentions": 2, "positive_pct": 50.0, "neutral_pct": 50.0, "negative_pct": 0.0, "avg_sentiment": 0.500, "workplace_sentiment": 0.0}
+        ],
+        "ai_companies": [
+            {"entity": "Google", "total_mentions": 308, "positive_pct": 66.23, "neutral_pct": 33.44, "negative_pct": 0.32, "avg_sentiment": 0.659, "workplace_sentiment": 0.084},
+            {"entity": "Microsoft", "total_mentions": 264, "positive_pct": 67.80, "neutral_pct": 32.20, "negative_pct": 0.0, "avg_sentiment": 0.678, "workplace_sentiment": 0.061},
+            {"entity": "Apple", "total_mentions": 159, "positive_pct": 74.21, "neutral_pct": 25.79, "negative_pct": 0.0, "avg_sentiment": 0.742, "workplace_sentiment": 0.044},
+            {"entity": "Meta", "total_mentions": 125, "positive_pct": 58.40, "neutral_pct": 40.80, "negative_pct": 0.80, "avg_sentiment": 0.576, "workplace_sentiment": 0.008},
+            {"entity": "NVIDIA", "total_mentions": 90, "positive_pct": 71.11, "neutral_pct": 28.89, "negative_pct": 0.0, "avg_sentiment": 0.711, "workplace_sentiment": 0.011},
+            {"entity": "OpenAI", "total_mentions": 45, "positive_pct": 62.22, "neutral_pct": 37.78, "negative_pct": 0.0, "avg_sentiment": 0.622, "workplace_sentiment": 0.089},
+            {"entity": "IBM", "total_mentions": 30, "positive_pct": 66.67, "neutral_pct": 33.33, "negative_pct": 0.0, "avg_sentiment": 0.667, "workplace_sentiment": 0.200},
+            {"entity": "Anthropic", "total_mentions": 12, "positive_pct": 58.33, "neutral_pct": 33.33, "negative_pct": 0.0, "avg_sentiment": 0.636, "workplace_sentiment": 0.0}
+        ]
+    }
+
 # Load all data
 industry_data = load_industry_data()
 tech_mentions = load_technology_data()
@@ -404,6 +460,7 @@ use_cases = load_use_case_data()
 job_impact = load_job_impact_data()
 time_series_data = load_real_time_series_data()
 detailed_recommendations = load_detailed_recommendations()
+sentiment_data = load_sentiment_data()
 
 # Convert industry data to list of dictionaries for easier handling
 industry_list = []
@@ -424,6 +481,22 @@ st.title("AI Readiness Navigator")
 st.markdown("**Identify industries most impacted by AI and develop actionable adoption strategies**")
 st.markdown("*Analysis based on 184,388+ news articles covering paradigm-shifting AI technologies*")
 
+# Why This Matters section
+st.markdown("""
+<div class="warning-box">
+<h4>⚠️ Why This Matters</h4>
+<p><strong>AI adoption is not just a technological issue—it's a social and economic inflection point.</strong> When implemented without foresight, automation can deepen inequality, displace vulnerable workers, and fracture public trust in innovation.</p>
+
+<p><strong>Key Risks:</strong></p>
+<ul>
+<li><strong>Digital Divide:</strong> Those with access to capital, computing resources, and technical talent are poised to benefit immensely from AI, while low-wage, routine-task workers may face disruption without support systems. This could exacerbate societal divides.</li>
+<li><strong>Job Displacement:</strong> Job displacement isn't theoretical—it's happening now. Without upskilling and reskilling programs, large portions of the workforce risk falling behind. Education, training, and career mobility must be reimagined in light of AI's trajectory.</li>
+<li><strong>Window of Influence:</strong> Industry leaders have a rare window of influence to shape AI adoption responsibly. By acting early, they can ensure AI augments human capabilities rather than replaces them—boosting productivity while protecting livelihoods.</li>
+<li><strong>Need for Coordination:</strong> Government regulation, academic research, and corporate innovation must work together to build trustworthy AI ecosystems that are fair, transparent, and aligned with long-term societal values.</li>
+</ul>
+</div>
+""", unsafe_allow_html=True)
+
 # Show key paradigm shift technologies
 st.markdown("""
 <div class="paradigm-shift">
@@ -434,12 +507,12 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # Navigation
-page = st.sidebar.radio("Navigate", ["Industry Dashboard", "Recommendation Engine", "Rollout Simulator", "Technology Trends"])
+page = st.sidebar.radio("Navigate", ["Industry Dashboard", "Recommendation Engine", "Rollout Simulator", "Technology Trends", "AI Players & Organizations"])
 
 # ------------------------------
 # 1. Industry Dashboard
 # ------------------------------
-if page == "📊 Industry Dashboard":
+if page == "Industry Dashboard":
     st.header("📊 Industry Impact Dashboard")
     st.markdown("*Ranking industries by AI impact potential based on discussion volume and technology adoption patterns*")
     
@@ -531,7 +604,7 @@ if page == "📊 Industry Dashboard":
 # ------------------------------
 # 2. Recommendation Engine
 # ------------------------------
-elif page == "🎯 Recommendation Engine":
+elif page == "Recommendation Engine":
     st.header("🎯 Actionable AI Adoption Recommendations")
     st.markdown("*Strategic guidance for successful AI implementation based on industry impact analysis*")
     
@@ -698,7 +771,7 @@ elif page == "🎯 Recommendation Engine":
 # ------------------------------
 # 3. Rollout Simulator
 # ------------------------------
-elif page == "🔄 Rollout Simulator":
+elif page == "Rollout Simulator":
     st.header("🔄 AI Rollout Risk Simulator")
     st.markdown("*Simulate different rollout approaches and predict success likelihood*")
     
@@ -845,11 +918,29 @@ elif page == "🔄 Rollout Simulator":
         • Invest heavily in change management and training
         • Focus on augmentation rather than automation
         """)
+    
+    # What AI Still Can't Do section
+    st.subheader("🤔 What AI Still Can't Do")
+    st.markdown("""
+    <div class="recommendation-box">
+    <h4>Understanding AI Limitations is Critical for Successful Implementation</h4>
+    
+    <p><strong>🧠 Empathy and Emotional Intelligence:</strong> While AI can mimic emotion through tone and language, it doesn't truly understand feelings. Roles that rely on compassion like therapists, nurses, and conflict mediators, still require the human touch.</p>
+    
+    <p><strong>⚖️ Human Judgment in Complex Contexts:</strong> AI can follow patterns and rules, but it struggles with ambiguity and moral gray areas. Decision-making that depends on values, ethics, or long-term social consequences like in law, policy, or leadership still needs people.</p>
+    
+    <p><strong>🔧 Skilled Movement and Physical Adaptability:</strong> From fixing a leaky pipe to helping someone out of a chair, physical tasks in messy, real-world environments require dexterity and improvisation. These are incredibly difficult for robots to replicate.</p>
+    
+    <p><strong>🎨 Cultural Awareness and Original Creativity:</strong> AI can remix data into something new, but true creativity like humor and storytelling, comes from lived experience and human context. Art, satire, and innovation often defy predictable logic.</p>
+    
+    <p><em>Keep these limitations in mind when designing your AI rollout strategy. The most successful implementations focus on AI-human collaboration rather than replacement.</em></p>
+    </div>
+    """, unsafe_allow_html=True)
 
 # ------------------------------
 # 4. Technology Trends
 # ------------------------------
-elif page == "📈 Technology Trends":
+elif page == "Technology Trends":
     st.header("📈 AI Technology Trend Analysis")
     st.markdown("*Track technology adoption patterns and sentiment shifts over time*")
     
@@ -978,6 +1069,254 @@ elif page == "📈 Technology Trends":
                 current_mentions = tech_data['mentions'][-1] if tech_data['mentions'] else 0
                 st.write(f"• Current activity: {tech_data['dates'][-1].strftime('%B %Y')} ({current_mentions:,} mentions)")
 
+# ------------------------------
+# 5. AI Players & Organizations
+# ------------------------------
+elif page == "AI Players & Organizations":
+    st.header("🏢 AI Players & Organizations Dashboard")
+    st.markdown("*Sentiment analysis and perception tracking of key AI technologies, leaders, and companies*")
+    
+    # Overall Statistics
+    stats = sentiment_data["overall_stats"]
+    st.subheader("📊 Analysis Overview")
+    
+    col1, col2, col3, col4 = st.columns(4)
+    with col1:
+        st.metric("Total Articles Analyzed", f"{stats['total_rows']:,}")
+    with col2:
+        st.metric("Unique Organizations", f"{stats['total_unique_organizations']:,}")
+    with col3:
+        st.metric("Unique Persons", f"{stats['total_unique_persons']:,}")
+    with col4:
+        st.metric("Unique Locations", f"{stats['total_unique_locations']:,}")
+    
+    # Overall sentiment distribution
+    st.subheader("🎭 Overall Sentiment Distribution")
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        st.markdown("**General Sentiment**")
+        overall_sent = stats["overall_sentiment_distribution"]
+        # Create pie chart data
+        sentiment_data_chart = {
+            'Positive': overall_sent['Positive'],
+            'Neutral': overall_sent['Neutral'], 
+            'Negative': overall_sent['Negative']
+        }
+        
+        # Display as metrics
+        total_overall = sum(overall_sent.values())
+        pos_pct = (overall_sent['Positive'] / total_overall) * 100
+        neu_pct = (overall_sent['Neutral'] / total_overall) * 100
+        neg_pct = (overall_sent['Negative'] / total_overall) * 100
+        
+        st.metric("Positive", f"{overall_sent['Positive']}", f"{pos_pct:.1f}%")
+        st.metric("Neutral", f"{overall_sent['Neutral']}", f"{neu_pct:.1f}%")
+        st.metric("Negative", f"{overall_sent['Negative']}", f"{neg_pct:.1f}%")
+    
+    with col2:
+        st.markdown("**Workplace Sentiment**")
+        workplace_sent = stats["workplace_sentiment_distribution"]
+        total_workplace = sum(workplace_sent.values())
+        pos_pct_work = (workplace_sent['Positive'] / total_workplace) * 100
+        neu_pct_work = (workplace_sent['Neutral'] / total_workplace) * 100
+        neg_pct_work = (workplace_sent['Negative'] / total_workplace) * 100
+        
+        st.metric("Positive", f"{workplace_sent['Positive']}", f"{pos_pct_work:.1f}%")
+        st.metric("Neutral", f"{workplace_sent['Neutral']}", f"{neu_pct_work:.1f}%")
+        st.metric("Negative", f"{workplace_sent['Negative']}", f"{neg_pct_work:.1f}%")
+    
+    # Create tabs for different categories
+    tab1, tab2, tab3 = st.tabs(["🤖 AI Technologies", "👥 AI Leaders", "🏭 AI Companies"])
+    
+    with tab1:
+        st.subheader("AI Technologies Sentiment Analysis")
+        
+        # Technology selector
+        tech_options = [tech['entity'] for tech in sentiment_data['ai_technologies']]
+        selected_tech_sentiment = st.selectbox("Select Technology", tech_options, key="tech_sentiment")
+        
+        # Find selected technology data
+        selected_tech_data = next(tech for tech in sentiment_data['ai_technologies'] if tech['entity'] == selected_tech_sentiment)
+        
+        # Display technology metrics
+        col1, col2, col3, col4 = st.columns(4)
+        with col1:
+            st.metric("Total Mentions", f"{selected_tech_data['total_mentions']:,}")
+        with col2:
+            sentiment_color = "🟢" if selected_tech_data['avg_sentiment'] > 0.7 else "🟡" if selected_tech_data['avg_sentiment'] > 0.5 else "🔴"
+            st.metric("Avg Sentiment", f"{sentiment_color} {selected_tech_data['avg_sentiment']:.3f}")
+        with col3:
+            st.metric("Positive %", f"{selected_tech_data['positive_pct']:.1f}%")
+        with col4:
+            workplace_color = "🟢" if selected_tech_data['workplace_sentiment'] > 0.1 else "🟡" if selected_tech_data['workplace_sentiment'] > 0 else "🔴"
+            st.metric("Workplace Sentiment", f"{workplace_color} {selected_tech_data['workplace_sentiment']:.3f}")
+        
+        # Sentiment breakdown for selected technology
+        st.markdown("**Sentiment Breakdown**")
+        col1, col2, col3 = st.columns(3)
+        with col1:
+            st.markdown(f"**Positive:** {selected_tech_data['positive_pct']:.1f}%")
+            st.progress(selected_tech_data['positive_pct']/100)
+        with col2:
+            st.markdown(f"**Neutral:** {selected_tech_data['neutral_pct']:.1f}%")
+            st.progress(selected_tech_data['neutral_pct']/100)
+        with col3:
+            st.markdown(f"**Negative:** {selected_tech_data['negative_pct']:.1f}%")
+            st.progress(selected_tech_data['negative_pct']/100)
+        
+        # Top technologies comparison
+        st.subheader("📈 Technology Sentiment Comparison")
+        tech_comparison_data = {}
+        for tech in sentiment_data['ai_technologies'][:8]:  # Top 8 technologies
+            tech_comparison_data[tech['entity']] = tech['avg_sentiment']
+        
+        st.bar_chart(tech_comparison_data)
+        
+        # Technology insights
+        st.subheader("💡 Key Insights")
+        
+        # Find highest sentiment technology
+        highest_sentiment_tech = max(sentiment_data['ai_technologies'], key=lambda x: x['avg_sentiment'])
+        most_mentioned_tech = max(sentiment_data['ai_technologies'], key=lambda x: x['total_mentions'])
+        
+        st.markdown(f"""
+        <div class="recommendation-box">
+        <h4>Technology Sentiment Highlights</h4>
+        <p><strong>Highest Sentiment:</strong> {highest_sentiment_tech['entity']} ({highest_sentiment_tech['avg_sentiment']:.3f})</p>
+        <p><strong>Most Discussed:</strong> {most_mentioned_tech['entity']} ({most_mentioned_tech['total_mentions']:,} mentions)</p>
+        <p><strong>Workplace Impact:</strong> Technologies with positive workplace sentiment include Claude, Gemini, and Machine Learning</p>
+        <p><strong>Market Leader:</strong> AI and ChatGPT dominate discussion volume but maintain positive sentiment</p>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    with tab2:
+        st.subheader("AI Leaders Sentiment Analysis")
+        
+        # Leader selector
+        leader_options = [leader['entity'] for leader in sentiment_data['ai_leaders']]
+        selected_leader = st.selectbox("Select AI Leader", leader_options, key="leader_sentiment")
+        
+        # Find selected leader data
+        selected_leader_data = next(leader for leader in sentiment_data['ai_leaders'] if leader['entity'] == selected_leader)
+        
+        # Display leader metrics
+        col1, col2, col3, col4 = st.columns(4)
+        with col1:
+            st.metric("Total Mentions", f"{selected_leader_data['total_mentions']:,}")
+        with col2:
+            sentiment_color = "🟢" if selected_leader_data['avg_sentiment'] > 0.6 else "🟡" if selected_leader_data['avg_sentiment'] > 0.4 else "🔴"
+            st.metric("Avg Sentiment", f"{sentiment_color} {selected_leader_data['avg_sentiment']:.3f}")
+        with col3:
+            st.metric("Positive %", f"{selected_leader_data['positive_pct']:.1f}%")
+        with col4:
+            workplace_color = "🟢" if selected_leader_data['workplace_sentiment'] > 0.1 else "🟡" if selected_leader_data['workplace_sentiment'] > 0 else "🔴"
+            st.metric("Workplace Sentiment", f"{workplace_color} {selected_leader_data['workplace_sentiment']:.3f}")
+        
+        # Leaders comparison chart
+        st.subheader("👥 Leaders Sentiment Comparison")
+        leaders_comparison_data = {}
+        for leader in sentiment_data['ai_leaders'][:6]:  # Top 6 leaders
+            leaders_comparison_data[leader['entity']] = leader['avg_sentiment']
+        
+        st.bar_chart(leaders_comparison_data)
+        
+        # Leader insights
+        st.subheader("💡 Leadership Insights")
+        
+        # Find highest sentiment leader
+        highest_sentiment_leader = max(sentiment_data['ai_leaders'], key=lambda x: x['avg_sentiment'])
+        most_mentioned_leader = max(sentiment_data['ai_leaders'], key=lambda x: x['total_mentions'])
+        
+        st.markdown(f"""
+        <div class="recommendation-box">
+        <h4>AI Leadership Sentiment Analysis</h4>
+        <p><strong>Highest Sentiment:</strong> {highest_sentiment_leader['entity']} ({highest_sentiment_leader['avg_sentiment']:.3f})</p>
+        <p><strong>Most Discussed:</strong> {most_mentioned_leader['entity']} ({most_mentioned_leader['total_mentions']:,} mentions)</p>
+        <p><strong>Industry Dynamics:</strong> Sam Altman leads discussion volume, while technical leaders like Sundar Pichai maintain high sentiment</p>
+        <p><strong>Public Perception:</strong> Elon Musk shows mixed sentiment, reflecting polarized public opinion on his AI ventures</p>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    with tab3:
+        st.subheader("AI Companies Sentiment Analysis")
+        
+        # Company selector
+        company_options = [company['entity'] for company in sentiment_data['ai_companies']]
+        selected_company = st.selectbox("Select AI Company", company_options, key="company_sentiment")
+        
+        # Find selected company data
+        selected_company_data = next(company for company in sentiment_data['ai_companies'] if company['entity'] == selected_company)
+        
+        # Display company metrics
+        col1, col2, col3, col4 = st.columns(4)
+        with col1:
+            st.metric("Total Mentions", f"{selected_company_data['total_mentions']:,}")
+        with col2:
+            sentiment_color = "🟢" if selected_company_data['avg_sentiment'] > 0.7 else "🟡" if selected_company_data['avg_sentiment'] > 0.5 else "🔴"
+            st.metric("Avg Sentiment", f"{sentiment_color} {selected_company_data['avg_sentiment']:.3f}")
+        with col3:
+            st.metric("Positive %", f"{selected_company_data['positive_pct']:.1f}%")
+        with col4:
+            workplace_color = "🟢" if selected_company_data['workplace_sentiment'] > 0.1 else "🟡" if selected_company_data['workplace_sentiment'] > 0 else "🔴"
+            st.metric("Workplace Sentiment", f"{workplace_color} {selected_company_data['workplace_sentiment']:.3f}")
+        
+        # Companies comparison chart
+        st.subheader("🏭 Companies Sentiment Comparison")
+        companies_comparison_data = {}
+        for company in sentiment_data['ai_companies'][:8]:  # Top 8 companies
+            companies_comparison_data[company['entity']] = company['avg_sentiment']
+        
+        st.bar_chart(companies_comparison_data)
+        
+        # Company insights
+        st.subheader("💡 Market Insights")
+        
+        # Find highest sentiment company
+        highest_sentiment_company = max(sentiment_data['ai_companies'], key=lambda x: x['avg_sentiment'])
+        most_mentioned_company = max(sentiment_data['ai_companies'], key=lambda x: x['total_mentions'])
+        
+        st.markdown(f"""
+        <div class="recommendation-box">
+        <h4>AI Company Market Sentiment</h4>
+        <p><strong>Highest Sentiment:</strong> {highest_sentiment_company['entity']} ({highest_sentiment_company['avg_sentiment']:.3f})</p>
+        <p><strong>Most Discussed:</strong> {most_mentioned_company['entity']} ({most_mentioned_company['total_mentions']:,} mentions)</p>
+        <p><strong>Market Leaders:</strong> Apple leads sentiment (0.742), while Google dominates discussion volume</p>
+        <p><strong>Workplace Impact:</strong> IBM shows strongest workplace sentiment (0.200), indicating positive employee perception</p>
+        <p><strong>Industry Trend:</strong> Established tech giants maintain positive sentiment while newer AI-focused companies gain traction</p>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    # Cross-category insights
+    st.subheader("🔄 Cross-Category Analysis")
+    
+    col1, col2 = st.columns(2)
+    
+    with col1:
+        st.markdown("**Sentiment Leaders by Category**")
+        tech_leader = max(sentiment_data['ai_technologies'], key=lambda x: x['avg_sentiment'])
+        person_leader = max(sentiment_data['ai_leaders'], key=lambda x: x['avg_sentiment'])
+        company_leader = max(sentiment_data['ai_companies'], key=lambda x: x['avg_sentiment'])
+        
+        st.write(f"🤖 **Technology:** {tech_leader['entity']} ({tech_leader['avg_sentiment']:.3f})")
+        st.write(f"👤 **Leader:** {person_leader['entity']} ({person_leader['avg_sentiment']:.3f})")
+        st.write(f"🏢 **Company:** {company_leader['entity']} ({company_leader['avg_sentiment']:.3f})")
+    
+    with col2:
+        st.markdown("**Discussion Volume Leaders**")
+        tech_volume = max(sentiment_data['ai_technologies'], key=lambda x: x['total_mentions'])
+        person_volume = max(sentiment_data['ai_leaders'], key=lambda x: x['total_mentions'])
+        company_volume = max(sentiment_data['ai_companies'], key=lambda x: x['total_mentions'])
+        
+        st.write(f"🤖 **Technology:** {tech_volume['entity']} ({tech_volume['total_mentions']:,})")
+        st.write(f"👤 **Leader:** {person_volume['entity']} ({person_volume['total_mentions']:,})")
+        st.write(f"🏢 **Company:** {company_volume['entity']} ({company_volume['total_mentions']:,})")
+
 # Footer
 st.markdown("---")
 st.markdown("*AI Readiness Navigator • Strategic guidance based on analysis of 184,388+ articles • Focus on paradigm-shifting technologies*")
+
+if __name__ == "__main__":
+    # Run the app
+    # To run this file: streamlit run app.py
+    pass
