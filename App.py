@@ -47,15 +47,16 @@ st.markdown("""
 def load_industry_data():
     # From Chart 3: Total AI Mentions of Top Industries
     industry_data = {
-        'Tech': {'mentions': 1392510, 'rank': 1, 'impact_level': 'Transformational'},
-        'Finance': {'mentions': 256215, 'rank': 2, 'impact_level': 'High'},
-        'Healthcare': {'mentions': 249801, 'rank': 3, 'impact_level': 'High'},
-        'Media': {'mentions': 244143, 'rank': 4, 'impact_level': 'High'},
-        'Retail': {'mentions': 130249, 'rank': 5, 'impact_level': 'Medium-High'},
-        'Government': {'mentions': 121871, 'rank': 6, 'impact_level': 'Medium'},
-        'Education': {'mentions': 119335, 'rank': 7, 'impact_level': 'Medium'},
-        'Energy': {'mentions': 33252, 'rank': 8, 'impact_level': 'Emerging'},
-        'Transport': {'mentions': 29474, 'rank': 9, 'impact_level': 'Emerging'}
+        'Tech': {'mentions': 31665, 'rank': 1, 'impact_level': 'High'},
+        'Finance': {'mentions': 5330, 'rank': 5, 'impact_level': 'Medium'},
+        'Healthcare': {'mentions': 7300, 'rank': 3, 'impact_level': 'High'},
+        'Media': {'mentions': 4592, 'rank': 7, 'impact_level': 'Emerging'},
+        'Retail': {'mentions': 8147, 'rank': 2, 'impact_level': 'High'},
+        'Government': {'mentions': 2816, 'rank': 8, 'impact_level': 'Low'},
+        'Education': {'mentions': 6765, 'rank': 4, 'impact_level': 'Medium'},
+        'Energy': {'mentions': 4788, 'rank': 6, 'impact_level': 'Emerging'},
+        'Manufacturing': {'mentions': 1611, 'rank': 9, 'impact_level': 'Low'},
+        'Transport': {'mentions': 710, 'rank': 10, 'impact_level': 'Emerging'}
     }
     
     # Topic relevance from Chart 4 heatmap (key paradigm shift areas)
@@ -106,6 +107,12 @@ def load_industry_data():
             'Corporate Finance': 0.232,
             'IT Hardware': 0.135,
             'Digital Trading': 0.089,
+            'paradigm_technologies': ['Predictive AI', 'IoT Integration', 'Automation']
+        },
+        'Manufacturing': {
+            'Consumer Tech & AI': 0.130,
+            'Corporate Finance': 0.127,
+            'Digital Trading': 0.120,
             'paradigm_technologies': ['Predictive AI', 'IoT Integration', 'Automation']
         },
         'Transport': {
@@ -182,7 +189,7 @@ def load_job_impact_data():
             'Financial Analyst': 375
         },
         'Medium Impact (40-59% augmentation potential)': {
-            'Software Developer': 28200,
+            'Developer': 28200,
             'Software Engineer': 4991,
             'ML Engineer': 643,
             'AI Engineer': 1338,
@@ -616,74 +623,74 @@ elif page == "Recommendation Engine":
     if selected_industry == 'Tech':
         st.markdown("""
         <div class="recommendation-box">
-        <h4>1. Generative AI Integration (109,424 mentions - Paradigm Shift)</h4>
-        • <strong>Automate</strong>: Code generation, documentation, testing
-        • <strong>Productivity Boost</strong>: 40-60% reduction in development time
-        • <strong>Implementation</strong>: Integrate GPT-4/GitHub Copilot into development workflows
-        • <strong>Success Factor</strong>: Start with non-critical code, build developer confidence
+        <h4>1. Generative AI Integration</h4>
+        • <strong>Automate</strong>: Code generation, documentation, testing.
+        • <strong>Productivity Boost</strong>: 40-60% reduction in development time.
+        • <strong>Implementation</strong>: Integrate GPT-4/GitHub Copilot into development workflows.
+        • <strong>Success Factor</strong>: Start with non-critical code, build developer confidence.
         </div>
         """, unsafe_allow_html=True)
         
         st.markdown("""
         <div class="recommendation-box">
         <h4>2. Conversational AI for Customer Support (44,700 use case mentions)</h4>
-        • <strong>Automate</strong>: 70% of tier-1 support tickets, documentation queries
-        • <strong>Productivity Boost</strong>: 3x faster response times, 24/7 availability
-        • <strong>Implementation</strong>: Deploy ChatGPT-powered chatbots with human handoff
-        • <strong>Success Factor</strong>: Train on company-specific knowledge base
+        • <strong>Automate</strong>: 70% of support tickets, documentation queries.
+        • <strong>Productivity Boost</strong>: 3x faster response times, 24/7 availability.
+        • <strong>Implementation</strong>: Deploy ChatGPT-powered chatbots.
+        • <strong>Success Factor</strong>: Train on company-specific knowledge base.
         </div>
         """, unsafe_allow_html=True)
 
     elif selected_industry == 'Finance':
         st.markdown("""
         <div class="recommendation-box">
-        <h4>1. Automated Risk Assessment & Compliance (256,215 mentions)</h4>
-        • <strong>Automate</strong>: Document review, regulatory compliance checking
-        • <strong>Productivity Boost</strong>: 80% faster compliance reviews
-        • <strong>Implementation</strong>: Deploy NLP models for document analysis
-        • <strong>Success Factor</strong>: Maintain human oversight for final decisions
+        <h4>1. Automated Risk Assessment & Compliance. </h4>
+        • <strong>Automate</strong>: Document review and regulatory compliance checking.
+        • <strong>Productivity Boost</strong>: 80% faster compliance reviews.
+        • <strong>Implementation</strong>: Deploy NLP models for document analysis.
+        • <strong>Success Factor</strong>: Maintain human oversight for final decisions.
         </div>
         """, unsafe_allow_html=True)
         
         st.markdown("""
         <div class="recommendation-box">
-        <h4>2. Conversational Financial Advisory (ChatGPT applications)</h4>
-        • <strong>Automate</strong>: Basic financial planning, portfolio queries
-        • <strong>Productivity Boost</strong>: Handle 5x more client interactions
-        • <strong>Implementation</strong>: Integrate AI advisors with human oversight
-        • <strong>Success Factor</strong>: Ensure regulatory compliance and transparency
+        <h4>2. Conversational Financial Advisory (ChatGPT applications).</h4>
+        • <strong>Automate</strong>: Basic financial planning and portfolio queries.
+        • <strong>Productivity Boost</strong>: Handle 5x more client interactions.
+        • <strong>Implementation</strong>: Integrate AI advisors with human oversight.
+        • <strong>Success Factor</strong>: Ensure regulatory compliance and transparency.
         </div>
         """, unsafe_allow_html=True)
 
     elif selected_industry == 'Healthcare':
         st.markdown("""
         <div class="recommendation-box">
-        <h4>1. Medical Image Analysis (Computer Vision - 27,004 mentions)</h4>
-        • <strong>Automate</strong>: Radiology screening, dermatology diagnosis
-        • <strong>Productivity Boost</strong>: 50% faster image analysis
-        • <strong>Implementation</strong>: Deploy AI-assisted diagnostic tools
-        • <strong>Success Factor</strong>: Always require physician final approval
+        <h4>1. Medical Image Analysis (Computer Vision: 27,004 mentions).</h4>
+        • <strong>Automate</strong>: Radiology screening and diagnosis.
+        • <strong>Productivity Boost</strong>: 50% faster image analysis.
+        • <strong>Implementation</strong>: Deploy AI-assisted diagnostic tools.
+        • <strong>Success Factor</strong>: Always require a physician final approval.
         </div>
         """, unsafe_allow_html=True)
         
         st.markdown("""
         <div class="recommendation-box">
-        <h4>2. Clinical Documentation Automation (NLP applications)</h4>
-        • <strong>Automate</strong>: Note transcription, summary generation
-        • <strong>Productivity Boost</strong>: 2+ hours saved per day per physician
-        • <strong>Implementation</strong>: Voice-to-text with medical terminology
-        • <strong>Success Factor</strong>: Integrate with existing EHR systems
+        <h4>2. Clinical Documentation Automation.</h4>
+        • <strong>Automate</strong>: Note transcription and summary generation.
+        • <strong>Productivity Boost</strong>: Over 2 hours saved per day per physician.
+        • <strong>Implementation</strong>: Voice-to-text with medical terminology.
+        • <strong>Success Factor</strong>: Integrate with existing EHR systems.
         </div>
         """, unsafe_allow_html=True)
 
     elif selected_industry == 'Media':
         st.markdown("""
         <div class="recommendation-box">
-        <h4>1. Generative Content Creation (79,870 marketing mentions)</h4>
-        • <strong>Automate</strong>: Social media content, basic articles, image generation
-        • <strong>Productivity Boost</strong>: 10x faster content production
-        • <strong>Implementation</strong>: DALL-E for images, GPT for copy
-        • <strong>Success Factor</strong>: Maintain editorial oversight for brand voice
+        <h4>1. Generative Content Creation.</h4>
+        • <strong>Automate</strong>: Social media content, basic articles and image generation.
+        • <strong>Productivity Boost</strong>: 10x faster content production.
+        • <strong>Implementation</strong>: Use DALL-E for images and GPT for content.
+        • <strong>Success Factor</strong>: Maintain editorial oversight for brand voice.
         </div>
         """, unsafe_allow_html=True)
 
@@ -691,10 +698,10 @@ elif page == "Recommendation Engine":
         st.markdown("""
         <div class="recommendation-box">
         <h4>1. Personalized Recommendation Systems</h4>
-        • <strong>Automate</strong>: Product recommendations, inventory optimization
-        • <strong>Productivity Boost</strong>: 25% increase in conversion rates
-        • <strong>Implementation</strong>: ML-powered recommendation engines
-        • <strong>Success Factor</strong>: Balance personalization with privacy
+        • <strong>Automate</strong>: Product recommendations and inventory optimization.
+        • <strong>Productivity Boost</strong>: 25% increase in conversion rates.
+        • <strong>Implementation</strong>: ML-powered recommendation engines.
+        • <strong>Success Factor</strong>: Balance personalization with privacy.
         </div>
         """, unsafe_allow_html=True)
 
@@ -702,10 +709,10 @@ elif page == "Recommendation Engine":
         st.markdown("""
         <div class="recommendation-box">
         <h4>1. AI-Powered Tutoring Systems (ChatGPT in education)</h4>
-        • <strong>Automate</strong>: Homework help, personalized learning paths
-        • <strong>Productivity Boost</strong>: 24/7 student support availability
-        • <strong>Implementation</strong>: Deploy educational AI assistants
-        • <strong>Success Factor</strong>: Maintain academic integrity guidelines
+        • <strong>Automate</strong>: Homework problems and personalized learning paths.
+        • <strong>Productivity Boost</strong>: 24/7 student support availability.
+        • <strong>Implementation</strong>: Deploy educational AI assistants.
+        • <strong>Success Factor</strong>: Maintain academic integrity guidelines.
         </div>
         """, unsafe_allow_html=True)
 
@@ -713,37 +720,37 @@ elif page == "Recommendation Engine":
         # Generic recommendations for other industries
         st.markdown("""
         <div class="recommendation-box">
-        <h4>1. Process Automation (32,007 task automation mentions)</h4>
-        • <strong>Automate</strong>: Data entry, document processing, scheduling
-        • <strong>Productivity Boost</strong>: 50-70% time savings on routine tasks
-        • <strong>Implementation</strong>: Start with repetitive, rule-based processes
-        • <strong>Success Factor</strong>: Identify clear ROI metrics before implementation
+        <h4>1. Process Automation (32,007 task automation mentions). </h4>
+        • <strong>Automate</strong>: Data entry, document processing and scheduling.
+        • <strong>Productivity Boost</strong>: 50-70% time savings on routine tasks.
+        • <strong>Implementation</strong>: Start with repetitive and rule-based processes.
+        • <strong>Success Factor</strong>: Identify clear ROI metrics before implementation.
         </div>
         """, unsafe_allow_html=True)
         
         st.markdown("""
         <div class="recommendation-box">
-        <h4>2. Customer Service Enhancement (44,700 mentions)</h4>
-        • <strong>Automate</strong>: FAQ responses, appointment scheduling
-        • <strong>Productivity Boost</strong>: Handle 3x more customer inquiries
-        • <strong>Implementation</strong>: Conversational AI with human escalation
-        • <strong>Success Factor</strong>: Train AI on industry-specific terminology
+        <h4>2. Customer Service Enhancement (44,700 mentions).</h4>
+        • <strong>Automate</strong>: FAQ responses and appointment scheduling.
+        • <strong>Productivity Boost</strong>: Handle 3x more customer inquiries.
+        • <strong>Implementation</strong>: Conversational AI with human escalation.
+        • <strong>Success Factor</strong>: Train AI on industry-specific terminology.
         </div>
         """, unsafe_allow_html=True)
     
     # Success factors for AI adoption
-    st.subheader("🎯 Critical Success Factors")
+    st.subheader("Critical Success Factors")
     
     success_factors = {
-        'Tech': "Focus on developer productivity tools first - they show fastest ROI and build internal AI confidence",
-        'Finance': "Prioritize explainable AI for regulatory compliance - transparency is key to adoption success", 
-        'Healthcare': "Always maintain physician oversight - AI should augment, never replace medical judgment",
-        'Media': "Balance automation with creative control - use AI for efficiency, humans for strategy",
-        'Retail': "Start with recommendation systems - they provide immediate customer value and measurable ROI",
-        'Education': "Address academic integrity concerns proactively - establish clear AI usage guidelines",
-        'Government': "Focus on citizen service improvements - show tangible public benefits from AI adoption",
-        'Energy': "Emphasize predictive maintenance - AI prevents costly downtime and improves safety",
-        'Transport': "Prioritize safety applications - use AI for risk reduction and efficiency optimization"
+        'Tech': "Focus on developer productivity tools first, since they show fastest ROI and build internal AI confidence.",
+        'Finance': "Prioritize explainable AI for regulatory compliance, transparency is key for adoption success.", 
+        'Healthcare': "Always maintain physician oversight AI should augment, never replace medical judgment.",
+        'Media': "Balance automation with creative control. Use AI for efficiency and humans for strategy.",
+        'Retail': "Start with recommendation systems, they provide immediate customer value and measurable ROI.",
+        'Education': "Address academic integrity concerns proactively, establish clear AI usage guidelines.",
+        'Government': "Focus on citizen service improvements, to show tangible public benefits from AI adoption.",
+        'Energy': "Emphasize predictive maintenance, AI prevents costly downtime and improves safety.",
+        'Transport': "Prioritize safety applications, use AI for risk reduction and efficiency optimization."
     }
     
     st.markdown(f"""
@@ -757,11 +764,11 @@ elif page == "Recommendation Engine":
     st.subheader("⚡ Employee Productivity Enhancement")
     
     productivity_recommendations = [
-        "**Training Programs**: Invest 20% of implementation budget in AI literacy training",
-        "**Gradual Rollout**: Start with 1-2 departments, scale based on success metrics",
-        "**Human-AI Collaboration**: Position AI as 'intelligent assistant' not 'replacement'",
-        "**Feedback Loops**: Collect user feedback weekly during first 3 months",
-        "**Success Metrics**: Track time savings, error reduction, and employee satisfaction"
+        "**Training Programs**: Invest 20% of implementation budget in AI training.",
+        "**Gradual Rollout**: Start with 1-2 departments, scale based on success metrics.",
+        "**Human-AI Collaboration**: Position AI as intelligent assistants not replacements.",
+        "**Feedback Loops**: Collect user feedback weekly during the first 3 months.",
+        "**Success Metrics**: Track time savings, error reduction and employee satisfaction."
     ]
     
     for rec in productivity_recommendations:
@@ -937,139 +944,7 @@ elif page == "Rollout Simulator":
     """, unsafe_allow_html=True)
 
 # ------------------------------
-# 4. Technology Trends
-# ------------------------------
-elif page == "Technology Trends":
-    st.header("📈 AI Technology Trend Analysis")
-    st.markdown("*Track technology adoption patterns and sentiment shifts over time*")
-    
-    # Technology selection
-    selected_tech = st.selectbox("Select AI Technology", list(time_series_data.keys()))
-    
-    # Create tabs
-    tab1, tab2 = st.tabs(["📊 Mentions Over Time", "🏭 Related Industries"])
-    
-    with tab1:
-        st.subheader(f"Mentions Over Time: {selected_tech}")
-        
-        # Check if technology exists in real data
-        if selected_tech in time_series_data:
-            tech_data = time_series_data[selected_tech]
-            
-            # Create chart data dictionary for streamlit chart
-            chart_data = {}
-            for date, mentions in zip(tech_data['dates'], tech_data['mentions']):
-                chart_data[date.strftime('%Y-%m')] = mentions
-            
-            st.line_chart(chart_data, height=400)
-            
-            # Key insights from real data
-            peak_idx = np.argmax(tech_data['mentions'])
-            peak_date = tech_data['dates'][peak_idx]
-            peak_value = tech_data['mentions'][peak_idx]
-            current_value = tech_data['mentions'][-1] if tech_data['mentions'] else 0
-            
-            col1, col2, col3 = st.columns(3)
-            with col1:
-                st.metric("Peak Mentions", f"{peak_value:,}", f"{peak_date.strftime('%b %Y')}")
-            with col2:
-                st.metric("Current Mentions", f"{current_value:,}")
-            with col3:
-                # Calculate trend (comparing last 3 months vs previous 3)
-                if len(tech_data['mentions']) >= 6:
-                    recent_avg = np.mean(tech_data['mentions'][-3:])
-                    previous_avg = np.mean(tech_data['mentions'][-6:-3])
-                    trend = "📈 Rising" if recent_avg > previous_avg else "📉 Declining"
-                else:
-                    trend = "📊 Stable"
-                st.metric("Recent Trend", trend)
-                
-            # Show data insights
-            st.subheader("📊 Key Insights")
-            total_mentions = sum(tech_data['mentions'])
-            date_range = f"{tech_data['dates'][0].strftime('%Y')} - {tech_data['dates'][-1].strftime('%Y')}"
-            
-            st.markdown(f"""
-            **Analysis Period:** {date_range}  
-            **Total Mentions:** {total_mentions:,}  
-            **Peak Period:** {peak_date.strftime('%B %Y')} ({peak_value:,} mentions)  
-            **Data Points:** {len(tech_data['dates'])} months tracked
-            """)
-            
-        else:
-            st.warning(f"No time series data available for {selected_tech}")
-            st.info("Available technologies with time series data: " + ", ".join(list(time_series_data.keys())))
-    
-    with tab2:
-        st.subheader("Industries Using This Technology")
-        
-        # Map technologies to industries based on paradigm_technologies
-        related_industries = []
-        for industry, data in industry_data.items():
-            if 'paradigm_technologies' in data:
-                # Check if selected tech matches any paradigm technologies
-                for paradigm_tech in data['paradigm_technologies']:
-                    if (selected_tech.lower() in paradigm_tech.lower() or 
-                        paradigm_tech.lower() in selected_tech.lower() or
-                        selected_tech == paradigm_tech or
-                        # Special matching for common variations
-                        (selected_tech == 'AI' and 'ai' in paradigm_tech.lower()) or
-                        (selected_tech == 'ChatGPT' and 'chatgpt' in paradigm_tech.lower()) or
-                        (selected_tech == 'Machine Learning' and 'ml' in paradigm_tech.lower())):
-                        related_industries.append({
-                            'Industry': industry,
-                            'AI Mentions': data['mentions'],
-                            'Impact Level': data['impact_level'],
-                            'Rank': data['rank']
-                        })
-                        break
-        
-        if related_industries:
-            # Sort industries by AI mentions
-            related_industries = sorted(related_industries, key=lambda x: x['AI Mentions'], reverse=True)
-            
-            # Display table
-            st.subheader("Industries Using This Technology")
-            for industry in related_industries:
-                st.write(f"**{industry['Industry']}**: {industry['AI Mentions']:,} mentions (Impact: {industry['Impact Level']})")
-            
-            # Simple bar chart visualization
-            chart_data = {industry['Industry']: industry['AI Mentions'] for industry in related_industries}
-            st.bar_chart(chart_data)
-        else:
-            st.info(f"No specific industry adoption patterns found for {selected_tech} in the paradigm technologies mapping")
-            
-            # Show general technology impact from the real time series data
-            st.subheader("Overall Technology Impact")
-            if selected_tech in time_series_data:
-                tech_data = time_series_data[selected_tech]
-                total_mentions = sum(tech_data['mentions'])
-                st.metric("Total Mentions Over Time", f"{total_mentions:,}")
-                
-                # Show when it peaked
-                peak_idx = np.argmax(tech_data['mentions'])
-                peak_date = tech_data['dates'][peak_idx]
-                peak_value = tech_data['mentions'][peak_idx]
-                
-                st.write(f"**Peak Activity:** {peak_date.strftime('%B %Y')} with {peak_value:,} mentions")
-                
-                # Show adoption timeline
-                st.write("**Adoption Timeline:**")
-                first_significant = None
-                for i, (date, mentions) in enumerate(zip(tech_data['dates'], tech_data['mentions'])):
-                    if mentions > 1000 and first_significant is None:
-                        first_significant = date
-                        st.write(f"• First significant adoption: {date.strftime('%B %Y')} ({mentions:,} mentions)")
-                        break
-                
-                if peak_date != first_significant:
-                    st.write(f"• Peak adoption: {peak_date.strftime('%B %Y')} ({peak_value:,} mentions)")
-                
-                current_mentions = tech_data['mentions'][-1] if tech_data['mentions'] else 0
-                st.write(f"• Current activity: {tech_data['dates'][-1].strftime('%B %Y')} ({current_mentions:,} mentions)")
-
-# ------------------------------
-# 5. AI Players & Organizations
+# 4. AI Players & Organizations
 # ------------------------------
 elif page == "AI Players & Organizations":
     st.header("🏢 AI Players & Organizations Dashboard")
