@@ -20,3 +20,18 @@ With increasing concern over AI’s impact on the workforce, this project aims t
 - **Sentiment Analysis**: Custom scoring pipeline focused on labor and industry tone.
 - **Temporal Analysis**: Visualized sentiment shifts following major events like GPT-4 and AI Act.
 - **Tools Used**: `spaCy`, `TextBlob`, `Gensim`, `Pandas`, `Matplotlib`, `Seaborn`, `Streamlit`.
+
+
+## Key Findings
+
+- Office, legal, and service jobs show the highest automation risk
+- Healthcare and education are cautiously embracing AI for augmentation
+- Sentiment dropped sharply after major regulatory events and policy debates
+- Trust depends heavily on **how** AI tools are framed (e.g. “assistant” vs “replacement”)
+
+## Author
+
+Cassandra M. Sullivan 
+📧 cassandra@email.com | 🐦 @cassandra_ds | 🌐 cassandraprojects.dev
+
+
