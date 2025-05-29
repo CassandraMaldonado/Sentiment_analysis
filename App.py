@@ -477,22 +477,21 @@ for industry, data in industry_data.items():
 # ------------------------------
 # Main App
 # ------------------------------
-st.title("AI Readiness Navigator")
-st.markdown("**Identify industries most impacted by AI and develop actionable adoption strategies**")
-st.markdown("*Analysis based on 184,388+ news articles covering paradigm-shifting AI technologies*")
+st.title("AI Job Impact Readiness Navigator")
+st.markdown("*Analysis based on 184,388 news articles covering paradigm shifting AI technologies*")
 
 # Why This Matters section
 st.markdown("""
 <div class="warning-box">
-<h4>⚠️ Why This Matters</h4>
-<p><strong>AI adoption is not just a technological issue—it's a social and economic inflection point.</strong> When implemented without foresight, automation can deepen inequality, displace vulnerable workers, and fracture public trust in innovation.</p>
+<h4> Why This Matters</h4>
+<p> AI adoption is not just a technological issue, it's a social and economic inflection point. When implemented without foresight, automation can displace vulnerable workers and fracture public trust in innovation.</p>
 
 <p><strong>Key Risks:</strong></p>
 <ul>
-<li><strong>Digital Divide:</strong> Those with access to capital, computing resources, and technical talent are poised to benefit immensely from AI, while low-wage, routine-task workers may face disruption without support systems. This could exacerbate societal divides.</li>
-<li><strong>Job Displacement:</strong> Job displacement isn't theoretical—it's happening now. Without upskilling and reskilling programs, large portions of the workforce risk falling behind. Education, training, and career mobility must be reimagined in light of AI's trajectory.</li>
-<li><strong>Window of Influence:</strong> Industry leaders have a rare window of influence to shape AI adoption responsibly. By acting early, they can ensure AI augments human capabilities rather than replaces them—boosting productivity while protecting livelihoods.</li>
-<li><strong>Need for Coordination:</strong> Government regulation, academic research, and corporate innovation must work together to build trustworthy AI ecosystems that are fair, transparent, and aligned with long-term societal values.</li>
+<li><strong>Digital Divide:</strong> Those with access to capital, computing resources and technical talent are mostly benefited from AI, while low-wage, routine-task workers may face disruption without support systems. This could exacerbate societal divides.</li>
+<li><strong>Job Displacement:</strong> Job displacement isn't theoretical, it's happening right now. Without upskilling and reskilling programs a large portions of the workforce risk falling behind. Education and training must be provided.</li>
+<li><strong>Window of Influence:</strong> Industry leaders have a window of influence to shape AI adoption responsibly. By acting early, they can ensure AI augments human capabilities rather than replace them, while boosting productivity and protecting livelihoods.</li>
+<li><strong>Need for Coordination:</strong> Government regulation, academic research and corporate innovation must work together to build trustworthy AI ecosystems that are fair, transparent and aligned with social values.</li>
 </ul>
 </div>
 """, unsafe_allow_html=True)
@@ -502,7 +501,7 @@ st.markdown("""
 <div class="paradigm-shift">
 <h4>Paradigm Shift Technologies Driving AI Adoption:</h4>
 <p><strong>Generative AI:</strong> 109,424 mentions | <strong>Conversational AI (ChatGPT):</strong> 57,722 mentions | <strong>Computer Vision:</strong> 27,004 mentions</p>
-<p>These represent fundamental shifts in how AI technologies are being adopted across industries</p>
+<p>These represent fundamental shifts in how AI technologies are being adopted across industries.</p>
 </div>
 """, unsafe_allow_html=True)
 
@@ -551,7 +550,7 @@ if page == "Industry Dashboard":
                     st.write(f"{mentions:,} mentions")
     
     # Industry comparison chart
-    st.subheader("📈 Industry AI Impact Comparison")
+    st.subheader(" Industry AI Impact Comparison")
     
     # Create comparison dataframe
     comparison_data = []
@@ -595,9 +594,9 @@ if page == "Industry Dashboard":
         st.markdown(f"""
         <div class="metric-card">
         <strong>{selected_industry}</strong> shows <strong>{data['impact_level'].lower()} AI impact</strong>:
-        <br>• Discussion volume: {data['mentions']:,} mentions
-        <br>• Gradual adoption expected over 3-5 years
-        <br>• Focus on specific use cases rather than broad transformation
+        <br>• Discussion volume: {data['mentions']:,} mentions.
+        <br>• Gradual adoption expected over 3-5 years.
+        <br>• Focus on specific use cases rather than broad transformation.
         </div>
         """, unsafe_allow_html=True)
 
@@ -605,14 +604,14 @@ if page == "Industry Dashboard":
 # 2. Recommendation Engine
 # ------------------------------
 elif page == "Recommendation Engine":
-    st.header("🎯 Actionable AI Adoption Recommendations")
-    st.markdown("*Strategic guidance for successful AI implementation based on industry impact analysis*")
+    st.header("Actionable AI Adoption Recommendations")
+    st.markdown("*Strategic guidance for successful AI implementation based on industry impact analysis.*")
     
     selected_industry = st.selectbox("Select Industry for Recommendations", list(industry_data.keys()), key="rec")
     data = industry_data[selected_industry]
     
     # High-impact recommendations based on analysis
-    st.subheader("🚀 Priority Automation Opportunities")
+    st.subheader("Priority Automation Opportunities")
     
     if selected_industry == 'Tech':
         st.markdown("""
@@ -852,7 +851,7 @@ elif page == "Rollout Simulator":
     success_prob = calculate_success_probability(sim_industry, rollout_speed, staff_percentage, ai_approach, change_management)
     
     # Display results
-    st.subheader("📊 Rollout Success Prediction")
+    st.subheader(" Rollout Success Prediction")
     
     # Create gauge chart
     fig = go.Figure(go.Indicator(
@@ -883,57 +882,57 @@ elif page == "Rollout Simulator":
         st.success(f"**HIGH SUCCESS PROBABILITY ({success_prob}%)**")
         st.markdown("""
         **Your rollout plan shows strong success indicators:**
-        ✅ Well-balanced approach to AI implementation  
-        ✅ Appropriate timeline for organizational change  
-        ✅ Good change management planning  
+        1. Well-balanced approach to AI implementation.
+        2. Appropriate timeline for organizational change.  
+        3. Good management planning.  
         
         **Recommendations to maintain success:**
-        • Continue with current plan
-        • Monitor key metrics weekly
-        • Prepare contingency plans for unexpected challenges
+        • Continue with current plan.
+        • Monitor key metrics weekly.
+        • Prepare contingency plans for unexpected challenges.
         """)
     elif success_prob >= 60:
         st.warning(f"**MODERATE SUCCESS PROBABILITY ({success_prob}%)**")
         st.markdown("""
-        **Your rollout plan has some risk factors to address:**
-        ⚠️ Consider adjusting timeline or scope  
-        ⚠️ May need additional change management support  
+        **⚠️ Your rollout plan has some risk factors to address:**
+        1. Consider adjusting your timeline or scope.  
+        2. May need additional management support. 
         
         **Recommendations to improve success:**
-        • Extend timeline if currently aggressive
-        • Increase change management investment
-        • Consider starting with smaller pilot group
+        • Extend timeline if currently aggressive.
+        • Increase management investment.
+        • Consider starting with smaller pilot group.
         """)
     else:
         st.error(f"**LOW SUCCESS PROBABILITY ({success_prob}%)**")
         st.markdown("""
-        **Your rollout plan has significant risk factors:**
-        ❌ High risk of employee resistance or project failure  
-        ❌ Timeline or scope may be too aggressive  
-        ❌ Insufficient change management planning  
+        **❌ Your rollout plan has significant risk factors:**
+        1. High risk of employee resistance or project failure.  
+        2. Timeline or scope may be too aggressive. 
+        3. Insufficient management planning.  
         
         **Critical recommendations:**
-        • Extend rollout timeline significantly
-        • Reduce initial scope to pilot program
-        • Invest heavily in change management and training
-        • Focus on augmentation rather than automation
+        • Extend rollout timeline significantly.
+        • Reduce the initial scope to a pilot program.
+        • Invest heavily in management and training.
+        • Focus on augmentation rather than automation.
         """)
     
     # What AI Still Can't Do section
     st.subheader("🤔 What AI Still Can't Do")
     st.markdown("""
     <div class="recommendation-box">
-    <h4>Understanding AI Limitations is Critical for Successful Implementation</h4>
+    <h4>Understanding AI Limitations is Critical for a Successful Implementation</h4>
     
-    <p><strong>🧠 Empathy and Emotional Intelligence:</strong> While AI can mimic emotion through tone and language, it doesn't truly understand feelings. Roles that rely on compassion like therapists, nurses, and conflict mediators, still require the human touch.</p>
+    <p><strong>🧠 Empathy and emotional intelligence:</strong> While AI can mimic emotion through tone and language, it doesn't truly understand feelings. Roles that rely on compassion like therapists, nurses and conflict mediators, still require that human touch.</p>
     
-    <p><strong>⚖️ Human Judgment in Complex Contexts:</strong> AI can follow patterns and rules, but it struggles with ambiguity and moral gray areas. Decision-making that depends on values, ethics, or long-term social consequences like in law, policy, or leadership still needs people.</p>
+    <p><strong>⚖️ Human judgment in complex contexts:</strong> AI can follow patterns and rules, but it struggles with ambiguity and moral gray areas. Decision-making that depends on values, ethics or long-term social consequences like in law, policy or leadership still needs people.</p>
     
-    <p><strong>🔧 Skilled Movement and Physical Adaptability:</strong> From fixing a leaky pipe to helping someone out of a chair, physical tasks in messy, real-world environments require dexterity and improvisation. These are incredibly difficult for robots to replicate.</p>
+    <p><strong>🔧 Skilled movement and physical adaptability:</strong> From fixing a leaky pipe to helping someone out of a chair, physical tasks in messy, real-world environments require dexterity and improvisation. These are incredibly difficult for robots to replicate.</p>
     
-    <p><strong>🎨 Cultural Awareness and Original Creativity:</strong> AI can remix data into something new, but true creativity like humor and storytelling, comes from lived experience and human context. Art, satire, and innovation often defy predictable logic.</p>
+    <p><strong>🎨 Cultural awareness and original creativity:</strong> AI can remix data into something new, but true creativity like humor and storytelling, comes from experience and human context. </p>
     
-    <p><em>Keep these limitations in mind when designing your AI rollout strategy. The most successful implementations focus on AI-human collaboration rather than replacement.</em></p>
+    <p><em>Keep these limitations in mind when designing your AI rollout strategy.</em></p>
     </div>
     """, unsafe_allow_html=True)
 
@@ -1082,7 +1081,7 @@ elif page == "AI Players & Organizations":
     
     col1, col2, col3, col4 = st.columns(4)
     with col1:
-        st.metric("Total Articles Analyzed", f"{stats['total_rows']:,}")
+        st.metric("Total Articles Analyzed", '184,388')
     with col2:
         st.metric("Unique Organizations", f"{stats['total_unique_organizations']:,}")
     with col3:
@@ -1091,7 +1090,7 @@ elif page == "AI Players & Organizations":
         st.metric("Unique Locations", f"{stats['total_unique_locations']:,}")
     
     # Overall sentiment distribution
-    st.subheader("🎭 Overall Sentiment Distribution")
+    st.subheader("Overall Sentiment Distribution")
     col1, col2 = st.columns(2)
     
     with col1:
@@ -1110,9 +1109,9 @@ elif page == "AI Players & Organizations":
         neu_pct = (overall_sent['Neutral'] / total_overall) * 100
         neg_pct = (overall_sent['Negative'] / total_overall) * 100
         
-        st.metric("Positive", f"{overall_sent['Positive']}", f"{pos_pct:.1f}%")
-        st.metric("Neutral", f"{overall_sent['Neutral']}", f"{neu_pct:.1f}%")
-        st.metric("Negative", f"{overall_sent['Negative']}", f"{neg_pct:.1f}%")
+        st.metric("Positive", f"{overall_sent['Positive']}")
+        st.metric("Neutral", f"{overall_sent['Neutral']}")
+        st.metric("Negative", f"{overall_sent['Negative']}")
     
     with col2:
         st.markdown("**Workplace Sentiment**")
@@ -1122,9 +1121,9 @@ elif page == "AI Players & Organizations":
         neu_pct_work = (workplace_sent['Neutral'] / total_workplace) * 100
         neg_pct_work = (workplace_sent['Negative'] / total_workplace) * 100
         
-        st.metric("Positive", f"{workplace_sent['Positive']}", f"{pos_pct_work:.1f}%")
-        st.metric("Neutral", f"{workplace_sent['Neutral']}", f"{neu_pct_work:.1f}%")
-        st.metric("Negative", f"{workplace_sent['Negative']}", f"{neg_pct_work:.1f}%")
+        st.metric("Positive", f"{workplace_sent['Positive']}")
+        st.metric("Neutral", f"{workplace_sent['Neutral']}")
+        st.metric("Negative", f"{workplace_sent['Negative']}")
     
     # Create tabs for different categories
     tab1, tab2, tab3 = st.tabs(["🤖 AI Technologies", "👥 AI Leaders", "🏭 AI Companies"])
@@ -1183,10 +1182,10 @@ elif page == "AI Players & Organizations":
         st.markdown(f"""
         <div class="recommendation-box">
         <h4>Technology Sentiment Highlights</h4>
-        <p><strong>Highest Sentiment:</strong> {highest_sentiment_tech['entity']} ({highest_sentiment_tech['avg_sentiment']:.3f})</p>
-        <p><strong>Most Discussed:</strong> {most_mentioned_tech['entity']} ({most_mentioned_tech['total_mentions']:,} mentions)</p>
-        <p><strong>Workplace Impact:</strong> Technologies with positive workplace sentiment include Claude, Gemini, and Machine Learning</p>
-        <p><strong>Market Leader:</strong> AI and ChatGPT dominate discussion volume but maintain positive sentiment</p>
+        <p><strong>Highest Sentiment:</strong> {highest_sentiment_tech['entity']} ({highest_sentiment_tech['avg_sentiment']:.3f}).</p>
+        <p><strong>Most Discussed:</strong> {most_mentioned_tech['entity']} ({most_mentioned_tech['total_mentions']:,} mentions).</p>
+        <p><strong>Workplace Impact:</strong> Technologies with positive workplace sentiment include Claude, Gemini and Machine Learning.</p>
+        <p><strong>Market Leader:</strong> AI and ChatGPT dominate discussion volume and maintain positive sentiment.</p>
         </div>
         """, unsafe_allow_html=True)
     
@@ -1231,10 +1230,10 @@ elif page == "AI Players & Organizations":
         st.markdown(f"""
         <div class="recommendation-box">
         <h4>AI Leadership Sentiment Analysis</h4>
-        <p><strong>Highest Sentiment:</strong> {highest_sentiment_leader['entity']} ({highest_sentiment_leader['avg_sentiment']:.3f})</p>
-        <p><strong>Most Discussed:</strong> {most_mentioned_leader['entity']} ({most_mentioned_leader['total_mentions']:,} mentions)</p>
-        <p><strong>Industry Dynamics:</strong> Sam Altman leads discussion volume, while technical leaders like Sundar Pichai maintain high sentiment</p>
-        <p><strong>Public Perception:</strong> Elon Musk shows mixed sentiment, reflecting polarized public opinion on his AI ventures</p>
+        <p><strong>Highest Sentiment:</strong> {highest_sentiment_leader['entity']} ({highest_sentiment_leader['avg_sentiment']:.3f}.)</p>
+        <p><strong>Most Discussed:</strong> {most_mentioned_leader['entity']} ({most_mentioned_leader['total_mentions']:,} mentions).</p>
+        <p><strong>Industry Dynamics:</strong> Sam Altman leads discussion volume, while technical leaders like Sundar Pichai maintain high sentiment.</p>
+        <p><strong>Public Perception:</strong> Elon Musk shows mixed sentiment, reflecting polarized public opinion on his AI ventures.</p>
         </div>
         """, unsafe_allow_html=True)
     
@@ -1279,11 +1278,11 @@ elif page == "AI Players & Organizations":
         st.markdown(f"""
         <div class="recommendation-box">
         <h4>AI Company Market Sentiment</h4>
-        <p><strong>Highest Sentiment:</strong> {highest_sentiment_company['entity']} ({highest_sentiment_company['avg_sentiment']:.3f})</p>
-        <p><strong>Most Discussed:</strong> {most_mentioned_company['entity']} ({most_mentioned_company['total_mentions']:,} mentions)</p>
-        <p><strong>Market Leaders:</strong> Apple leads sentiment (0.742), while Google dominates discussion volume</p>
-        <p><strong>Workplace Impact:</strong> IBM shows strongest workplace sentiment (0.200), indicating positive employee perception</p>
-        <p><strong>Industry Trend:</strong> Established tech giants maintain positive sentiment while newer AI-focused companies gain traction</p>
+        <p><strong>Highest Sentiment:</strong> {highest_sentiment_company['entity']} ({highest_sentiment_company['avg_sentiment']:.3f}).</p>
+        <p><strong>Most Discussed:</strong> {most_mentioned_company['entity']} ({most_mentioned_company['total_mentions']:,} mentions).</p>
+        <p><strong>Market Leaders:</strong> Apple leads sentiment (0.742), while Google dominates the discussion volume.</p>
+        <p><strong>Workplace Impact:</strong> IBM shows strongest workplace sentiment (0.200), indicating a positive employee perception.</p>
+        <p><strong>Industry Trend:</strong> Established tech giants maintain positive sentiment while newer AI-focused companies gain traction.</p>
         </div>
         """, unsafe_allow_html=True)
     
@@ -1311,10 +1310,6 @@ elif page == "AI Players & Organizations":
         st.write(f"🤖 **Technology:** {tech_volume['entity']} ({tech_volume['total_mentions']:,})")
         st.write(f"👤 **Leader:** {person_volume['entity']} ({person_volume['total_mentions']:,})")
         st.write(f"🏢 **Company:** {company_volume['entity']} ({company_volume['total_mentions']:,})")
-
-# Footer
-st.markdown("---")
-st.markdown("*AI Readiness Navigator • Strategic guidance based on analysis of 184,388+ articles • Focus on paradigm-shifting technologies*")
 
 if __name__ == "__main__":
     # Run the app
