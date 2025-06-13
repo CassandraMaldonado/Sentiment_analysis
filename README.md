@@ -1,4 +1,4 @@
-# AI Industry Impact: NLP-Powered Labor Risk Analysis
+# AI Industry Impact: NLP Labor Risk Analysis
 
 This project investigates how AI is affecting different industries and job types using custom NLP techniques applied to 180,000+ news articles.
 
