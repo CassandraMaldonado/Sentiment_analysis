@@ -3,7 +3,7 @@
 This project investigates how AI is affecting different industries and job types using custom NLP techniques applied to 180,000+ news articles.
 
 
-## Project Overview
+## Overview
 
 With increasing concern over AI’s impact on the workforce, this project aims to:
 - Identify which industries and roles are most vulnerable to automation or augmentation.
@@ -20,9 +20,5 @@ With increasing concern over AI’s impact on the workforce, this project aims t
 - **Sentiment Analysis**: Custom scoring pipeline focused on labor and industry tone.
 - **Temporal Analysis**: Visualized sentiment shifts following major events like GPT-4 and AI Act.
 - **Tools Used**: `spaCy`, `TextBlob`, `Gensim`, `Pandas`, `Matplotlib`, `Seaborn`, `Streamlit`.
-
-## Author
-
-Cassandra M. Sullivan 
 
 
